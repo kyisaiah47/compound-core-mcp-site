@@ -39,3 +39,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Next 16 rewrites these on every dev run; a dirty tree costs the nightly deploy.
+AGENTS.md
+CLAUDE.md
+review/
+.open-next/
+.wrangler/
