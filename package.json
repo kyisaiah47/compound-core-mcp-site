@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 3313",
     "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
+    "start": "next start -p 3313",
+    "lint": "eslint",
+    "check": "node scripts/check-register.mjs",
+    "capture": "node scripts/capture.mjs"
   },
   "dependencies": {
     "@number-flow/react": "^0.6.2",
@@ -22,6 +24,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.3.5",
+    "playwright": "^1.52.0",
     "puppeteer-core": "^25.11.0",
     "typescript": "^5",
     "wrangler": "^4.136.1"

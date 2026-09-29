@@ -1,69 +1,25 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import Link from 'next/link';
+import { Icon } from '@/components/Icon';
+import { COLLECTIONS, PRICES, TOOLS, CREDIT_USD, CAPTURED_AT } from '@/lib/captured';
+import { PRODUCT, SOURCES } from '@/lib/product';
+
+function charge(key: string) {
+  if (key === 'late-fee-rules' || key === 'account') return 'free';
+  const price = PRICES[key as keyof typeof PRICES];
+  return price ? `${price.credits} credits · $${price.usd.toFixed(2)}` : 'not priced';
+}
+function collectionFor(key: string) { return COLLECTIONS.find((collection) => collection.key === key)?.title ?? 'Account'; }
 
 export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>
-            To get started, edit the{" "}
-            <code className={styles.code}>page.tsx</code> file.
-          </h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
-  );
+  return <>
+    <header className="topbar"><div className="topbar-inner"><Link className="brand" href="#top"><span className="brand-mark">P</span><span>{PRODUCT.name}</span><span className="brand-type">MCP</span></Link><span className="standing">TOOL SURFACE / METERED CALLS</span><nav><a href="#tools">Tools</a><a href="#install">Install</a><a className="nav-action" href={PRODUCT.repo} target="_blank" rel="noreferrer"><Icon name="arrow-square-out" size={15} /> Repository</a></nav></div></header>
+    <main id="top">
+      <section className="intro section-frame"><div className="intro-copy"><p className="eyebrow"><span className="signal" /> parserail-mcp · {PRODUCT.version}</p><h1>Native document and data tools for an MCP client.</h1><p className="lede">An MCP server for ParseRail gives Claude, Cursor, and any Model Context Protocol client native tools to parse documents, extract fields, redact PII, analyze contracts, fight chargebacks, and enrich companies.</p><div className="actions"><a className="button" href="#install"><Icon name="terminal-window" size={17} /> Install the server</a><a className="text-link" href="#tools">Read the tool surface <Icon name="caret-right" size={15} /></a></div></div><dl className="facts"><div><dt>calls captured</dt><dd>{TOOLS.length}</dd></div><div><dt>credit unit</dt><dd>${CREDIT_USD.toFixed(2)}</dd></div><div><dt>billing</dt><dd>successful calls</dd></div><div><dt>release</dt><dd>{PRODUCT.version}</dd></div></dl></section>
+      <section className="folio" aria-label="Scrollable summary strip"><div className="section-frame folio-inner"><span><b>{TOOLS.length}</b> registered tools</span><span><b>39</b> priced endpoints</span><span><b>7</b> tool groups</span><span><b>0</b> subscription</span><span>captured {CAPTURED_AT}</span></div></section>
+      <section className="content section-frame" id="tools"><div className="section-heading"><div><p className="eyebrow">01 / the ledger</p><h2>Each call has a visible charge.</h2></div><p className="section-note">Pay-per-call credits. The prices below are read from ParseRail&apos;s published pricing document.</p></div><div className="table-wrap" aria-label="Scrollable tool ledger. Continue horizontally for all columns."><div className="scroll-note">scroll horizontally for all columns</div><table><thead><tr><th>Tool</th><th>What it returns</th><th>Group</th><th>Cost</th></tr></thead><tbody>{TOOLS.map((tool) => <tr key={tool.name}><td className="tool-name"><span className="tool-icon"><Icon name={tool.key === 'parse' ? 'file-text' : tool.key === 'memory' ? 'clock' : tool.key === 'image' ? 'image' : 'plugs-connected'} size={16} /></span><span><strong>{tool.title}</strong><small>{tool.name}</small></span></td><td className="description">{tool.description.replace(/ Costs credits from the account wallet\.$/, '')}</td><td className="group">{collectionFor(tool.key)}</td><td className="cost">{charge(tool.key)}</td></tr>)}</tbody></table></div></section>
+      <section className="install section-frame" id="install"><div className="section-heading"><div><p className="eyebrow">02 / wire it in</p><h2>Add one stdio server.</h2></div><p className="section-note">The package exposes the server through the command in its package manifest.</p></div><div className="install-grid"><div className="code-card"><div className="code-head"><span><Icon name="terminal-window" size={15} /> Claude Code</span><span>stdio</span></div><div className="scroll-note">scroll horizontally for the full command</div><pre aria-label="Scrollable install command. Continue horizontally for the full command"><code>claude mcp add parserail -e PARSERAIL_API_KEY=ksk_live_… -- npx -y parserail-mcp</code></pre></div><div className="notes"><p><span className="note-mark">01</span>Get a key and 500 free credits at <a href={PRODUCT.api} target="_blank" rel="noreferrer">parserail.thecompound.tech</a>.</p><p><span className="note-mark">02</span>Documents accept <code>fileUrl</code>, raw <code>text</code>, or <code>fileBase64</code> with <code>fileMimeType</code>.</p><p><span className="note-mark">03</span>Account balance reads are free. The US late-fee ceilings dataset is free and needs no key.</p></div></div></section>
+      <section className="sources section-frame"><div className="sources-head"><p className="eyebrow">03 / source ledger</p><h2>Read from the package.</h2><p>Every product claim on this page has a recorded primary source.</p></div><div className="source-list">{SOURCES.map((source) => <a href={source.url} target="_blank" rel="noreferrer" key={source.id}><span>{source.cite}</span><b>{source.quote}</b><small>read {source.read_at} <Icon name="arrow-square-out" size={13} /></small></a>)}</div></section>
+    </main>
+    <footer className="footer"><div className="section-frame footer-inner"><div><p className="footer-title">{PRODUCT.name} · {PRODUCT.packageName}</p><p>© 2026 ParseRail. A Compound Labs product.</p></div><div className="credit"><span>Built by</span><img className="studio-credit-mark" src="/brand/compound-labs.svg" alt="Compound Labs" width={80} height={20} /><a href="mailto:hello@thecompound.tech">hello@thecompound.tech</a></div></div></footer>
+  </>;
 }
