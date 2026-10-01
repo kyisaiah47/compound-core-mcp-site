@@ -3,6 +3,10 @@ import { Icon } from '@/components/Icon';
 import { MARK_INNER, MARK_VIEWBOX } from '@/icons/mark.generated';
 import { COLLECTIONS, PRICES, TOOLS, CREDIT_USD, CAPTURED_AT } from '@/lib/captured';
 import { PRODUCT, SOURCES } from '@/lib/product';
+import PageViews from '@/components/site-view/PageViews';
+import ViewControls from '@/components/site-view/ViewControls';
+import SimpleHome from '@/components/site-view/SimpleHome';
+import { SimpleFrame } from '@/components/site-view/SimpleChrome';
 
 function charge(key: string) {
   if (key === 'late-fee-rules' || key === 'account') return 'free';
@@ -12,7 +16,7 @@ function charge(key: string) {
 function collectionFor(key: string) { return COLLECTIONS.find((collection) => collection.key === key)?.title ?? 'Account'; }
 
 export default function Home() {
-  return <>
+  return <PageViews simpleView={<SimpleFrame><SimpleHome /></SimpleFrame>} consoleView={<>
     <header className="topbar"><div className="topbar-inner"><Link className="brand" href="#top"><svg className="brand-mark" aria-hidden="true" viewBox={MARK_VIEWBOX} dangerouslySetInnerHTML={{ __html: MARK_INNER }} /><span>{PRODUCT.name}</span><span className="brand-type">MCP</span></Link><span className="standing">TOOL SURFACE / METERED CALLS</span><nav><a href="#tools">Tools</a><a href="#install">Install</a><Link href="/guides/install-parserail-mcp">Guide</Link><a className="nav-action" href={PRODUCT.repo} target="_blank" rel="noreferrer"><Icon name="arrow-square-out" size={15} /> Repository</a></nav></div></header>
     <main id="top">
       <section className="intro section-frame"><div className="intro-copy"><p className="eyebrow"><span className="signal" /> parserail-mcp · {PRODUCT.version}</p><h1>Native document and data tools for an MCP client.</h1><p className="lede">An MCP server for ParseRail gives Claude, Cursor, and any Model Context Protocol client native tools to parse documents, extract fields, redact PII, analyze contracts, fight chargebacks, and enrich companies.</p><div className="actions"><a className="button" href="#install"><Icon name="terminal-window" size={17} /> Install the server</a><a className="text-link" href="#tools">Read the tool surface <Icon name="caret-right" size={15} /></a></div></div><dl className="facts"><div><dt>calls captured</dt><dd>{TOOLS.length}</dd></div><div><dt>credit unit</dt><dd>${CREDIT_USD.toFixed(2)}</dd></div><div><dt>billing</dt><dd>successful calls</dd></div><div><dt>release</dt><dd>{PRODUCT.version}</dd></div></dl></section>
@@ -21,6 +25,6 @@ export default function Home() {
       <section className="install section-frame" id="install"><div className="section-heading"><div><p className="eyebrow">02 / wire it in</p><h2>Add one stdio server.</h2></div><p className="section-note">The package exposes the server through the command in its package manifest.</p></div><div className="install-grid"><div className="code-card"><div className="code-head"><span><Icon name="terminal-window" size={15} /> Claude Code</span><span>stdio</span></div><div className="scroll-note">scroll horizontally for the full command</div><pre aria-label="Scrollable install command. Continue horizontally for the full command"><code>claude mcp add parserail -e PARSERAIL_API_KEY=ksk_live_… -- npx -y parserail-mcp</code></pre></div><div className="notes"><p><span className="note-mark">01</span>Get a key and 500 free credits at <a href={PRODUCT.api} target="_blank" rel="noreferrer">parserail.thecompound.tech</a>.</p><p><span className="note-mark">02</span>Documents accept <code>fileUrl</code>, raw <code>text</code>, or <code>fileBase64</code> with <code>fileMimeType</code>.</p><p><span className="note-mark">03</span>Account balance reads are free. The US late-fee ceilings dataset is free and needs no key.</p></div></div></section>
       <section className="sources section-frame"><div className="sources-head"><p className="eyebrow">03 / source ledger</p><h2>Read from the package.</h2><p>Every product claim on this page has a recorded primary source.</p></div><div className="source-list">{SOURCES.map((source) => <a href={source.url} target="_blank" rel="noreferrer" key={source.id}><span>{source.cite}</span><b>{source.quote}</b><small>read {source.read_at} <Icon name="arrow-square-out" size={13} /></small></a>)}</div></section>
     </main>
-    <footer className="footer"><div className="section-frame footer-inner"><div><p className="footer-title">{PRODUCT.name} · {PRODUCT.packageName}</p><p>© 2026 ParseRail. A Compound Labs product.</p></div><div className="credit"><span>Built by</span><img className="studio-credit-mark" src="/brand/compound-labs.svg" alt="Compound Labs" width={20} height={20} /><a href="mailto:hello@thecompound.tech">hello@thecompound.tech</a></div></div></footer>
-  </>;
+    <footer className="footer"><div className="section-frame footer-inner"><div><p className="footer-title">{PRODUCT.name} · {PRODUCT.packageName}</p><p>© 2026 ParseRail. A Compound Labs product.</p></div><div className="credit"><span>Built by</span><img className="studio-credit-mark" src="/brand/compound-labs.svg" alt="Compound Labs" width={20} height={20} /><a href="mailto:hello@thecompound.tech">hello@thecompound.tech</a></div></div><div className="section-frame"><ViewControls /></div></footer>
+  </>} />;
 }
