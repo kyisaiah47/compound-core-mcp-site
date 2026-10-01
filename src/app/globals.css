@@ -25,7 +25,7 @@
 .footer { border-top:1px solid var(--line); background:var(--panel); } .footer-inner { min-height:125px; display:flex; align-items:center; justify-content:space-between; gap:30px; } .footer p { margin:0; color:var(--ink-3); font-size:12px; } .footer-title { color:var(--ink)!important; font:12px var(--mono)!important; margin-bottom:6px!important; } .credit { display:flex; align-items:center; gap:10px; color:var(--ink-3); font:11px var(--mono); } .credit a { margin-left:14px; color:var(--ink-2); }
 @media (max-width:800px) { .topbar-inner { min-height:54px; } .standing,nav a:not(.nav-action) { display:none; } .intro { display:block; padding-top:48px; padding-bottom:45px; } .facts { margin-top:38px; } h1 { font-size:40px; } .lede { font-size:16px; } .section-heading,.install-grid,.sources { display:block; } .section-note { margin-top:16px; } .install-grid { padding-top:20px; } .notes { margin-top:28px; } .sources-head { margin-bottom:28px; } .source-list a { grid-template-columns:1fr; gap:7px; } .source-list small { justify-content:start; } .footer-inner { display:block; padding-top:28px; padding-bottom:28px; } .credit { margin-top:24px; flex-wrap:wrap; } }
 .guide { max-width:900px; padding-top:73px; padding-bottom:90px; }
-.guide h1 { max-width:820px; }
+.guide h1 { max-width:none; }
 .guide-answer { color:var(--ink-2); font-size:19px; line-height:1.6; }
 .guide-section { padding:34px 0; border-top:1px solid var(--line); }
 .guide-section h2,.guide-sources h2 { margin-bottom:14px; font-size:25px; }
