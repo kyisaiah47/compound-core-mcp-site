@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { Icon } from '@/components/Icon';
+import { MARK_INNER, MARK_VIEWBOX } from '@/icons/mark.generated';
 import { COLLECTIONS, PRICES, TOOLS, CREDIT_USD, CAPTURED_AT } from '@/lib/captured';
 import { PRODUCT, SOURCES } from '@/lib/product';
 
@@ -12,7 +13,7 @@ function collectionFor(key: string) { return COLLECTIONS.find((collection) => co
 
 export default function Home() {
   return <>
-    <header className="topbar"><div className="topbar-inner"><Link className="brand" href="#top"><span className="brand-mark">P</span><span>{PRODUCT.name}</span><span className="brand-type">MCP</span></Link><span className="standing">TOOL SURFACE / METERED CALLS</span><nav><a href="#tools">Tools</a><a href="#install">Install</a><Link href="/guides/install-parserail-mcp">Guide</Link><a className="nav-action" href={PRODUCT.repo} target="_blank" rel="noreferrer"><Icon name="arrow-square-out" size={15} /> Repository</a></nav></div></header>
+    <header className="topbar"><div className="topbar-inner"><Link className="brand" href="#top"><svg className="brand-mark" aria-hidden="true" viewBox={MARK_VIEWBOX} dangerouslySetInnerHTML={{ __html: MARK_INNER }} /><span>{PRODUCT.name}</span><span className="brand-type">MCP</span></Link><span className="standing">TOOL SURFACE / METERED CALLS</span><nav><a href="#tools">Tools</a><a href="#install">Install</a><Link href="/guides/install-parserail-mcp">Guide</Link><a className="nav-action" href={PRODUCT.repo} target="_blank" rel="noreferrer"><Icon name="arrow-square-out" size={15} /> Repository</a></nav></div></header>
     <main id="top">
       <section className="intro section-frame"><div className="intro-copy"><p className="eyebrow"><span className="signal" /> parserail-mcp · {PRODUCT.version}</p><h1>Native document and data tools for an MCP client.</h1><p className="lede">An MCP server for ParseRail gives Claude, Cursor, and any Model Context Protocol client native tools to parse documents, extract fields, redact PII, analyze contracts, fight chargebacks, and enrich companies.</p><div className="actions"><a className="button" href="#install"><Icon name="terminal-window" size={17} /> Install the server</a><a className="text-link" href="#tools">Read the tool surface <Icon name="caret-right" size={15} /></a></div></div><dl className="facts"><div><dt>calls captured</dt><dd>{TOOLS.length}</dd></div><div><dt>credit unit</dt><dd>${CREDIT_USD.toFixed(2)}</dd></div><div><dt>billing</dt><dd>successful calls</dd></div><div><dt>release</dt><dd>{PRODUCT.version}</dd></div></dl></section>
       <section className="folio" aria-label="Scrollable summary strip"><div className="section-frame folio-inner"><span><b>{TOOLS.length}</b> registered tools</span><span><b>39</b> priced endpoints</span><span><b>7</b> tool groups</span><span><b>0</b> subscription</span><span>captured {CAPTURED_AT}</span></div></section>
