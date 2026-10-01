@@ -17,7 +17,7 @@ export default function Disclosure({
     <div className="sv-disclosure">
       <button type="button" aria-expanded={open} aria-controls={id} onClick={() => setOpen(!open)}>
         <span>{title}</span>
-        <span className="sv-sign" aria-hidden="true">{open ? '−' : '+'}</span>
+        <span className="sv-sign" aria-hidden="true">{open ? '-' : '+'}</span>
       </button>
       <div id={id} className="sv-reveal" data-open={open} inert={!open}>
         <div>

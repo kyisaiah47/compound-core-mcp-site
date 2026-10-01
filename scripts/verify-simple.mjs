@@ -99,7 +99,8 @@ try {
       await t.click();
       await page.waitForTimeout(300);
       check('listbox opens on click', (await t.getAttribute('aria-expanded')) === 'true');
-      await page.screenshot({ path: `${OUT}/${PRODUCT}-simple-select-open-1440.png` });
+      const top = await t.evaluate((el) => el.getBoundingClientRect().top + window.scrollY);
+      await page.screenshot({ path: `${OUT}/${PRODUCT}-simple-select-open-1440.png`, fullPage: true, clip: { x: 0, y: Math.max(0, top - 300), width: 1440, height: 900 } });
       await page.keyboard.press('ArrowDown');
       await page.keyboard.press('Enter');
       await page.waitForTimeout(300);

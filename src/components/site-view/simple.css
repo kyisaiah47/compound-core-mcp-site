@@ -20,13 +20,13 @@
   --sv-ease: cubic-bezier(0.32, 0.72, 0, 1);
 }
 .sv-mark svg { width: 100%; height: 100%; display: block; }
-.footer .sv-view-tools { margin-top: 18px; }
-.sv-credit { display: flex; align-items: center; gap: 10px; }
-/* SIMPLE VIEW KIT. Every colour and face is a --sv-* alias the product's own simple.css maps
- * onto its Console tokens. A roomier composition over the same register.
- * Sans carries every sentence. Mono is for small labels, page references and identifiers only. */
+.footer /* ---- resets first: the kit's own buttons, inside its own containers, drop whatever a site's
+ * global button rule draws. Every kit rule below is at least as specific and comes later. --- */
+:is(.sv-view-tools, .sv-disclosure, .sv-welcome, .sv-select, .sv-others, .sv-card, .sv-plan, .sv-home, .sv-page) button {
+  font: inherit; color: inherit; background: none; border: 0; padding: 0; margin: 0; cursor: pointer; border-radius: 0; text-transform: none; letter-spacing: normal; display: revert; gap: normal; min-width: 0; align-items: stretch; justify-content: normal; text-align: inherit; font-weight: inherit;
+}
+:is(.sv-nav, .sv-footer) nav, nav.sv-home-links { margin-left: 0; }
 
-/* ---- view controls, on both views' footers ---------------------------------------------- */
 .sv-view-tools { display: flex; align-items: center; flex-wrap: wrap; gap: 24px; color: var(--sv-dim); font: 13px/1.6 var(--sv-sans); }
 .sv-view-tools > div { display: flex; align-items: center; gap: 20px; }
 .sv-view-tools > div > span { color: var(--sv-dimmer); }
@@ -70,12 +70,12 @@
 .sv-card-sub { font: 16px/1.7 var(--sv-sans); color: var(--sv-dim); padding-top: 14px; }
 .sv-label { display: block; padding-top: 24px; font: 13px/1.6 var(--sv-sans); color: var(--sv-dim); }
 .sv-select { position: relative; }
-.sv-select-btn {
+.sv-select .sv-select-btn {
   display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; min-width: 0; height: 52px; margin-top: 10px;
   padding: 0 16px; font: 16px var(--sv-sans); color: var(--sv-ink); background: var(--sv-well); border: 1px solid var(--sv-rule); text-align: left;
   transition: border-color 160ms ease;
 }
-.sv-select-btn:hover, .sv-select-btn[aria-expanded='true'] { border-color: var(--sv-acc-hair); }
+.sv-select .sv-select-btn:hover, .sv-select .sv-select-btn[aria-expanded='true'] { border-color: var(--sv-acc-hair); }
 .sv-select-val { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
 .sv-select-chev { width: 8px; height: 8px; flex-shrink: 0; border-right: 1.5px solid var(--sv-dim); border-bottom: 1.5px solid var(--sv-dim); transform: translateY(-2px) rotate(45deg); transition: transform 200ms var(--sv-ease); }
 .sv-select-btn[aria-expanded='true'] .sv-select-chev { transform: translateY(2px) rotate(-135deg); }
@@ -90,14 +90,14 @@
 .sv-select-pop li[data-active='true'] { background: var(--sv-tint); color: var(--sv-ink); }
 .sv-select-pop li[aria-selected='true'] { color: var(--sv-ink); }
 .sv-select-tick { color: var(--sv-acc); flex-shrink: 0; }
-.sv-primary, .sv-secondary {
+:is(a, button).sv-primary, :is(a, button).sv-secondary {
   display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; min-height: 50px; padding: 12px 16px;
   font: 600 15px/1.3 var(--sv-sans); text-align: center; transition: background 160ms ease, border-color 160ms ease, color 160ms ease;
 }
-.sv-primary { background: var(--sv-acc); color: var(--sv-on-acc); }
-.sv-primary:hover { background: var(--sv-lit); }
-.sv-secondary { border: 1px solid var(--sv-rule); color: var(--sv-ink); }
-.sv-secondary:hover { border-color: var(--sv-acc-hair); background: var(--sv-raised); }
+:is(a, button).sv-primary { background: var(--sv-acc); color: var(--sv-on-acc); }
+:is(a, button).sv-primary:hover { background: var(--sv-lit); }
+:is(a, button).sv-secondary { border: 1px solid var(--sv-rule); color: var(--sv-ink); }
+:is(a, button).sv-secondary:hover { border-color: var(--sv-acc-hair); background: var(--sv-raised); }
 .sv-primary .ph, .sv-secondary .ph { width: 17px; height: 17px; }
 .sv-card .sv-primary { margin-top: 14px; }
 .sv-terms { padding-top: 18px; font: 13px/1.7 var(--sv-sans); color: var(--sv-dimmer); }
@@ -229,7 +229,7 @@
 .sv-welcome-top .sv-brand { font-size: 14px; }
 .sv-welcome-top .sv-mark { width: 20px; height: 20px; }
 .sv-welcome-top small { color: var(--sv-dimmer); font: 10px var(--sv-mono); }
-.sv-welcome-top > button { font-size: 26px; width: 44px; height: 44px; color: var(--sv-dim); }
+.sv-welcome-top > button { display: grid; place-items: center; font-size: 26px; width: 44px; height: 44px; color: var(--sv-dim); }
 .sv-welcome-top > button:hover { color: var(--sv-ink); }
 .sv-welcome-intro { padding: 30px 32px 24px; }
 .sv-welcome-intro h2 { font: 500 clamp(26px, 3vw, 36px)/1.2 var(--sv-sans); letter-spacing: -0.035em; padding: 14px 0; }
@@ -277,7 +277,7 @@
   .sv-page-heading { padding-top: 36px; }
   .sv-prose { font-size: 16px; }
   .sv-prose table { display: block; overflow-x: auto; }
-  .sv-home-links { flex-direction: column; gap: 0; }
+  .sv-home-links { flex-direction: column; align-items: flex-start; gap: 0; }
 }
 @media (width <= 600px) {
   .sv-welcome { width: calc(100vw - 24px); max-height: calc(100dvh - 24px); }
@@ -328,6 +328,18 @@
 :where(.sv-view-tools button, .sv-disclosure > button, .sv-welcome button, .sv-select-btn, .sv-others button, button.sv-primary, button.sv-secondary) {
   font: inherit; color: inherit; background: none; border: 0; padding: 0; margin: 0; cursor: pointer; border-radius: 0; text-transform: none; letter-spacing: normal;
 }
+.sv-nav nav, .sv-footer nav, .sv-home-links, .sv-view-tools { font-family: var(--sv-sans); letter-spacing: normal; text-transform: none; }
+.sv-nav nav a:hover, .sv-footer nav a:hover, .sv-home-links a:hover { background: none; }
+.sv-view-tools button { padding: 0 2px; }
+:where(.sv-home, .sv-page, .sv-welcome, .sv-footer, .sv-nav, .sv-select-pop) :where(h1, h2, h3, h4, p, dl, dd, figure, blockquote) { margin: 0; }
+:where(.sv-home, .sv-welcome, .sv-footer, .sv-select-pop, .sv-receipts, .sv-help-list) :where(ul, ol) { margin: 0; padding: 0; list-style: none; }
+:is(.sv-nav, .sv-footer) nav a, nav.sv-home-links a { display: inline-flex; }
+.sv-facts dt { font: 15px/1.6 var(--sv-sans); letter-spacing: normal; text-transform: none; color: var(--sv-dim); }
+.sv-facts dd { font: 15px/1.6 var(--sv-sans); text-align: left; color: var(--sv-ink); }
+
+
+/* ---- resets, at zero specificity, so a site without a global button reset still draws the
+ * kit's own controls and the site's own nav rules do not leak into Simple ---------------------- */
 .sv-nav nav, .sv-footer nav, .sv-home-links, .sv-view-tools { font-family: var(--sv-sans); letter-spacing: normal; text-transform: none; }
 .sv-nav nav a:hover, .sv-footer nav a:hover, .sv-home-links a:hover { background: none; }
 .sv-view-tools button { padding: 0 2px; }
