@@ -48,7 +48,7 @@ const handshake = await new Promise((done) => {
   p.stderr.on('data', (d) => (err += d));
   const send = (o) => p.stdin.write(JSON.stringify(o) + '\n');
   send({ jsonrpc: '2.0', id: 1, method: 'initialize',
-    params: { protocolVersion: '2025-06-18', capabilities: {}, clientInfo: { name: 'compound-core-mcp-site capture', version: '1' } } });
+    params: { protocolVersion: '2025-06-18', capabilities: {}, clientInfo: { name: 'parserail-mcp-site capture', version: '1' } } });
   setTimeout(() => {
     send({ jsonrpc: '2.0', method: 'notifications/initialized' });
     send({ jsonrpc: '2.0', id: 2, method: 'tools/list' });
