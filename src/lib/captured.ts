@@ -5,10 +5,10 @@
 //   the prices    https://parserail.thecompound.tech/pricing.json
 //   async         https://parserail.thecompound.tech/openapi.json
 //   collections   ~/CompoundLabs/parserail/src/lib/platform/constants.ts
-export const CAPTURED_AT = "2026-09-29";
+export const CAPTURED_AT = "2026-10-02";
 export const SERVER = {
  "name": "parserail-mcp",
- "version": "0.5.5",
+ "version": "0.5.7",
  "protocol": "2025-06-18",
  "capabilities": [
   "tools"

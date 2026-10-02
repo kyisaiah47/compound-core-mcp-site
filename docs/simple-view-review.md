@@ -10,7 +10,7 @@ Built on `main` on 2026-10-01. Blueprint: `compound-ops/standards/SIMPLE-VIEW-BL
 | Problem | The client has no tools to parse documents, extract fields or redact PII. |
 | Input | No form. The first action is copying a setup: the `claude mcp add` command or the `mcpServers` entry (the install guide's own text, in `src/lib/install.ts`). |
 | Output | The client gets the tools in `lib/captured.ts` `TOOLS`, captured from the package's own `tools/list`. |
-| Free and paid | Pay per successful call; no subscription (`SOURCES` readme-pricing). One credit is `CREDIT_USD`. Per-call prices are `PRICES` from ParseRail's pricing.json. A key comes with 500 free credits (readme-setup). Account reads and the late-fee dataset are free. |
+| Free and paid | Pay per successful call; no subscription required (`SOURCES` readme-pricing). One credit is `CREDIT_USD`. Per-call prices are `PRICES` from ParseRail's pricing.json. There is no free tier: credits are bought up front, a $20 pack or a plan from $19/mo (readme-setup). Account reads and the late-fee dataset are free. |
 | Permissions | A ParseRail API key in `PARSERAIL_API_KEY`. The site itself has no account and no API routes. |
 | Failure states | Calls are charged only on success. The site sends nothing. |
 | Recovery | The new 404 page. |

@@ -60,7 +60,7 @@ export default function SimpleHome() {
             parse documents, extract fields, redact PII, analyze contracts, fight chargebacks, and enrich companies.
           </p>
           <div className="sv-qualifier">
-            You pay per successful call. One credit is {usd(CREDIT_USD)}. There is no subscription.
+            You pay per successful call. One credit is {usd(CREDIT_USD)}. No subscription is required.
           </div>
         </div>
 
@@ -78,7 +78,7 @@ export default function SimpleHome() {
             multiline={c.text.includes('\n')}
           />
           <p className="sv-terms">
-            Get a key and 500 free credits at{' '}
+            Get a key and buy credits at{' '}
             <a href={PRODUCT.api} target="_blank" rel="noreferrer">
               parserail.thecompound.tech
             </a>
@@ -146,12 +146,12 @@ export default function SimpleHome() {
             <span className="sv-eyebrow">03 / WHAT IT COSTS</span>
             <h2>Pay per successful call.</h2>
           </div>
-          <p>Pay-per-call credits, no subscription. You are only charged on a successful call.</p>
+          <p>Pay-per-call credits, no subscription required. You are only charged on a successful call.</p>
         </div>
         <div className="sv-cards">
           <div>
             <h3>One credit is {usd(CREDIT_USD)}.</h3>
-            <p>A new key comes with 500 free credits. Credits come out of the account wallet.</p>
+            <p>There is no free tier. Credits are bought up front, a $20 pack or a plan from $19/mo, and come out of the account wallet.</p>
           </div>
           <div>
             <h3>Common calls</h3>
