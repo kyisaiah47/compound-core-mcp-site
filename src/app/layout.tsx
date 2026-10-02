@@ -7,6 +7,7 @@ import '@/components/site-view/simple.css';
 import SiteViewProvider from '@/components/site-view/SiteViewProvider';
 import Welcome from '@/components/site-view/Welcome';
 import Mark from '@/components/site-view/Mark';
+import Analytics from '@/components/Analytics';
 
 const mono = IBM_Plex_Mono({ variable: '--font-mono', subsets: ['latin'], weight: ['400', '500', '600'] });
 
@@ -21,7 +22,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const jsonLd = { '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: PRODUCT.name, applicationCategory: 'DeveloperApplication', publisher: { '@type': 'Organization', '@id': 'https://thecompound.tech/#organization', name: 'Compound Labs', url: 'https://thecompound.tech' } };
-  return <html lang="en" className={mono.variable}><body><SmoothScroll /><SiteViewProvider slug="compound-core-mcp" welcome={<Welcome copy={{
+  return <html lang="en" className={mono.variable}><body><Analytics /><SmoothScroll /><SiteViewProvider slug="compound-core-mcp" welcome={<Welcome copy={{
     name: `${PRODUCT.name} MCP`,
     mark: <Mark />,
     eyebrow: 'YOUR AI CLIENT. YOUR DOCUMENTS.',
