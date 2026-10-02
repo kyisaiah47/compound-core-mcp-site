@@ -146,12 +146,12 @@ export default function SimpleHome() {
             <span className="sv-eyebrow">03 / WHAT IT COSTS</span>
             <h2>Pay per successful call.</h2>
           </div>
-          <p>Pay-per-call credits, no subscription required. You are only charged on a successful call.</p>
+          <p>ParseRail uses pay-per-call credits and requires no subscription. You pay only when a call succeeds.</p>
         </div>
         <div className="sv-cards">
           <div>
             <h3>One credit is {usd(CREDIT_USD)}.</h3>
-            <p>There is no free tier. Credits are bought up front, a $20 pack or a plan from $19/mo, and come out of the account wallet.</p>
+            <p>ParseRail has no free tier. You buy credits up front through a $20 pack or a plan from $19/mo. The credits come out of the account wallet.</p>
           </div>
           <div>
             <h3>Common calls</h3>
