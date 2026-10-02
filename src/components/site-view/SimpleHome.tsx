@@ -54,7 +54,7 @@ export default function SimpleHome() {
           <span className="sv-eyebrow">
             {PRODUCT.packageName} · {PRODUCT.version}
           </span>
-          <h1>Native document and data tools for an MCP client.</h1>
+          <h1>ParseRail gives an MCP client native document and data tools.</h1>
           <p>
             An MCP server for ParseRail gives Claude, Cursor, and any Model Context Protocol client native tools to
             parse documents, extract fields, redact PII, analyze contracts, fight chargebacks, and enrich companies.
@@ -91,7 +91,7 @@ export default function SimpleHome() {
         <div className="sv-section-intro">
           <div>
             <span className="sv-eyebrow">02 / WHAT YOUR CLIENT GETS</span>
-            <h2>{TOOLS.length} tools, one at a time.</h2>
+            <h2>{TOOLS.length} tools run one at a time.</h2>
           </div>
           <p>Pick a tool to see what it does, what it needs and what one call costs.</p>
         </div>
@@ -144,13 +144,13 @@ export default function SimpleHome() {
         <div className="sv-section-intro">
           <div>
             <span className="sv-eyebrow">03 / WHAT IT COSTS</span>
-            <h2>Pay per successful call.</h2>
+            <h2>You pay for each successful call.</h2>
           </div>
           <p>ParseRail uses pay-per-call credits and requires no subscription. You pay only when a call succeeds.</p>
         </div>
         <div className="sv-cards">
           <div>
-            <h3>One credit is {usd(CREDIT_USD)}.</h3>
+            <h3>One credit costs {usd(CREDIT_USD)}.</h3>
             <p>ParseRail has no free tier. You buy credits up front through a $20 pack or a plan from $19/mo. The credits come out of the account wallet.</p>
           </div>
           <div>

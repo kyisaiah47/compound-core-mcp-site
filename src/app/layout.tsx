@@ -16,8 +16,8 @@ export const metadata: Metadata = {
   description: 'The parserail-mcp tool surface, with each call and its current credit cost.',
   metadataBase: new URL(`https://${PRODUCT.host}`),
   alternates: { canonical: '/' },
-  openGraph: { title: `${PRODUCT.name} MCP | metered tool calls`, description: 'ParseRail document tools for any MCP client, billed per call. Each tool lists its current credit cost.', url: `https://${PRODUCT.host}`, siteName: PRODUCT.name, type: 'website', images: [{ url: '/og.jpg', width: 1200, height: 630, alt: 'ParseRail MCP: metered tool calls' }] },
-  twitter: { card: 'summary_large_image', title: `${PRODUCT.name} MCP | metered tool calls`, description: 'Native ParseRail document and data tools for an MCP client.', images: ['/og.jpg'] },
+  openGraph: { title: `${PRODUCT.name} MCP | metered tool calls`, description: 'ParseRail provides document tools for any MCP client. You pay per call, and each tool lists its current credit cost.', url: `https://${PRODUCT.host}`, siteName: PRODUCT.name, type: 'website', images: [{ url: '/og.jpg', width: 1200, height: 630, alt: 'ParseRail MCP: metered tool calls' }] },
+  twitter: { card: 'summary_large_image', title: `${PRODUCT.name} MCP | metered tool calls`, description: 'ParseRail gives an MCP client native document and data tools.', images: ['/og.jpg'] },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
