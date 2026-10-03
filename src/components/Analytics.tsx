@@ -67,6 +67,7 @@ let checkoutHooked = false;
 /** Fetch and start the SDK, once. Every caller awaits this same promise. */
 function init(): Promise<boolean> {
   if (typeof window === 'undefined') return Promise.resolve(false);
+  if (window.location.host.split(':')[0].toLowerCase().endsWith('.workers.dev')) return Promise.resolve(false);
   if (ready) return ready;
   ready = import('posthog-js').then(({ default: ph }) => {
     posthog = ph;
